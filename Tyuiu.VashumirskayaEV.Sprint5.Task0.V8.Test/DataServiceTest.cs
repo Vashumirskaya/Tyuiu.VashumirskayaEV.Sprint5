@@ -9,12 +9,17 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task0.V8.Test
         [TestMethod]
         public void TestMethod1()
         {
-            string path = @"C:\Users\huawei\source\repos\Tyuiu.VashumirskayaEV.Sprint5\Tyuiu.VashumirskayaEV.Sprint5.Task0.V8\bin\Debug\net8.0\OutPutFileTask0.txt";
+            int x = 3;
+            DataService ds = new DataService();
 
-            FileInfo fileInfo = new FileInfo(path);
-            bool fileExists = fileInfo.Exists;
-            bool wait = true;
-            Assert.AreEqual(wait, fileExists);
+            string path = ds.SaveToFileTextData(x);
+
+            Assert.IsTrue(File.Exists(path), "Файл не создан");
+
+            double expected = Math.Round((Math.Pow(x, 3) - 1) / (4 * Math.Pow(x, 2)), 3);
+            string text = File.ReadAllText(path);
+
+            Assert.AreEqual(expected.ToString(), text);
         }
     }
 }

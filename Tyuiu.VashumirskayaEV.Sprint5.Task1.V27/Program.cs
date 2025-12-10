@@ -6,8 +6,8 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task1.V27
     {
         static void Main(string[] args)
         {
-            int startValue = 1;  // Начальное значение
-            int stopValue = 5;   // Конечное значение
+            int startValue = 1;
+            int stopValue = 5;
 
             DataService ds = new DataService();
 
@@ -25,7 +25,9 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task1.V27
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* ИСХОДНЫЕ ДАННЫЕ :                                                       *");
             Console.WriteLine("***************************************************************************");
-            Console.WriteLine($"startValue = {startValue}, stopValue = {stopValue}");
+
+            Console.WriteLine($"startValue = {startValue}");
+            Console.WriteLine($"stopValue = {stopValue}");
 
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* РЕЗУЛЬТАТ :                                                             *");
@@ -33,7 +35,7 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task1.V27
 
             string res = ds.SaveToFileTextData(startValue, stopValue);
 
-            Console.WriteLine("Файл: " + res);
+            Console.WriteLine($"Файл: {res}");
             Console.WriteLine("Создан!");
 
             Console.ReadKey();

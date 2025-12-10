@@ -8,7 +8,7 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task1.V27.Lib
         public string SaveToFileTextData(int startValue, int stopValue)
         {
             string dir = Path.GetTempPath();
-            string path = Path.Combine(Path.GetTempPath(), "OutPutFileTask0.txt");
+            string path = Path.Combine(dir, "OutPutFileTask0.txt");
 
             double y;
             string strY;
@@ -29,7 +29,6 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task1.V27.Lib
             }
 
             return path;
-
         }
     }
 }

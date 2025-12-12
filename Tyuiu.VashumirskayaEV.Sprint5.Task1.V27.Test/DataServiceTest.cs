@@ -10,9 +10,12 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task1.V27.Test
         public void TestMethod1()
         {
             DataService ds = new DataService();
-            string path = ds.SaveToFileTextData(-5, 5);
 
-            Assert.IsTrue(File.Exists(path));
+            string path = ds.SaveToFileTextData(2, 2);
+            string result = File.ReadAllText(path).Trim();
+
+            Assert.AreNotEqual("0,00", result);
+
             File.Delete(path);
         }
     }

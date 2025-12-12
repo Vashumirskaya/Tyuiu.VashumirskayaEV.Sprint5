@@ -38,14 +38,26 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task1.V27
 
             Console.WriteLine($"Файл создан: {path}");
             Console.WriteLine("***************************************************************************");
-            Console.WriteLine("Содержимое файла:");
+            Console.WriteLine("Таблица значений функции:");
             Console.WriteLine("***************************************************************************");
+            Console.WriteLine("|   x   |   F(x)   |");
+            Console.WriteLine("|-------|----------|");
 
             string[] lines = File.ReadAllLines(path);
+            int x = startValue;
+
             foreach (string line in lines)
             {
-                Console.WriteLine(line);
+                Console.WriteLine($"| {x,5} | {line,8} |");
+                x++;
             }
+
+            Console.WriteLine("***************************************************************************");
+            Console.WriteLine("Содержимое файла (как есть):");
+            Console.WriteLine("***************************************************************************");
+
+            string fileContent = File.ReadAllText(path);
+            Console.WriteLine(fileContent);
 
             Console.WriteLine("***************************************************************************");
             Console.ReadLine();

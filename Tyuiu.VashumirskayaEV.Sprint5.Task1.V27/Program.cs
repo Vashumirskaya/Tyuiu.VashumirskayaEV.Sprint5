@@ -6,39 +6,49 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task1.V27
     {
         static void Main(string[] args)
         {
-            int startValue = 1;
-            int stopValue = 5;
-
-            DataService ds = new DataService();
-
-            Console.Title = "Спринт #5 | Выполнила: Вашумирская Е. В. | СМАРТб-25-1";
+            Console.Title = "Спринт #5 | Выполнил: [ВашаФамилия] [ВашеИмя] | Вариант #27";
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* Спринт #5                                                               *");
-            Console.WriteLine("* Тема: Работа с файлами                                                  *");
+            Console.WriteLine("* Тема: Запись данных в текстовый файл                                    *");
             Console.WriteLine("* Задание #1                                                              *");
             Console.WriteLine("* Вариант #27                                                             *");
-            Console.WriteLine("* Выполнила: Вашумирская Елизавета Владимировна | СМАРТб-25-1             *");
+            Console.WriteLine("* Выполнил: [ВашаФамилия] [ВашеИмя] | [ВашаГруппа]                        *");
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* УСЛОВИЕ:                                                                *");
-            Console.WriteLine("* Вычислить значение функции f(x) = sin(x) для значений x от {0} до {1}, *", startValue, stopValue);
-            Console.WriteLine("* округлить результаты до 2 знаков после запятой и сохранить в файл.      *");
+            Console.WriteLine("* Дана функция F(x) = (3x - 1.5)/(sin(x) - 3 + x) + 2                     *");
+            Console.WriteLine("* Произвести табулирование на диапазоне [-5; 5] с шагом 1.                *");
+            Console.WriteLine("* При делении на ноль вернуть 0.                                          *");
+            Console.WriteLine("* Результат сохранить в файл OutPutFileTask1.txt                          *");
+            Console.WriteLine("* Округлить до двух знаков после запятой.                                 *");
             Console.WriteLine("***************************************************************************");
-            Console.WriteLine("* ИСХОДНЫЕ ДАННЫЕ :                                                       *");
-            Console.WriteLine("***************************************************************************");
-
-            Console.WriteLine($"startValue = {startValue}");
-            Console.WriteLine($"stopValue = {stopValue}");
-
-            Console.WriteLine("***************************************************************************");
-            Console.WriteLine("* РЕЗУЛЬТАТ :                                                             *");
+            Console.WriteLine("* ИСХОДНЫЕ ДАННЫЕ:                                                        *");
             Console.WriteLine("***************************************************************************");
 
-            string res = ds.SaveToFileTextData(startValue, stopValue);
+            DataService ds = new DataService();
+            int startValue = -5;
+            int stopValue = 5;
 
-            Console.WriteLine($"Файл: {res}");
-            Console.WriteLine("Создан!");
+            Console.WriteLine($"* Стартовое значение = {startValue}                                      *");
+            Console.WriteLine($"* Конечное значение = {stopValue}                                        *");
+            Console.WriteLine("***************************************************************************");
+            Console.WriteLine("* РЕЗУЛЬТАТ:                                                              *");
+            Console.WriteLine("***************************************************************************");
 
-            Console.ReadKey();
+            string path = ds.SaveToFileTextData(startValue, stopValue);
+
+            Console.WriteLine($"Файл создан: {path}");
+            Console.WriteLine("***************************************************************************");
+            Console.WriteLine("Содержимое файла:");
+            Console.WriteLine("***************************************************************************");
+
+            string[] lines = File.ReadAllLines(path);
+            foreach (string line in lines)
+            {
+                Console.WriteLine(line);
+            }
+
+            Console.WriteLine("***************************************************************************");
+            Console.ReadLine();
         }
     }
 }

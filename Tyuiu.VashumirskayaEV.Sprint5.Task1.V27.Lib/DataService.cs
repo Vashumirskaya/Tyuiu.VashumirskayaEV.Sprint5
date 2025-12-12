@@ -7,25 +7,35 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task1.V27.Lib
     {
         public string SaveToFileTextData(int startValue, int stopValue)
         {
-            string dir = Path.GetTempPath();
-            string path = Path.Combine(dir, "OutPutFileTask0.txt");
+            string path = Path.Combine(Path.GetTempPath(), "OutPutFileTask1.txt");
 
-            double y;
-            string strY;
-
-            for (int x = startValue; x <= stopValue; x++)
+            using (StreamWriter writer = new StreamWriter(path))
             {
-                y = Math.Round(Math.Sin(x), 2);
-                strY = Convert.ToString(y);
+                writer.WriteLine("Табулирование функции F(x) = (3x - 1.5)/(sin(x) - 3 + x) + 2");
+                writer.WriteLine($"Диапазон: [{startValue}; {stopValue}] с шагом 1");
+                writer.WriteLine("=================================================");
+                writer.WriteLine("|   x   |   F(x)   |");
+                writer.WriteLine("=================================================");
 
-                if (x == stopValue)
+                for (int x = startValue; x <= stopValue; x++)
                 {
-                    File.AppendAllText(path, strY + Environment.NewLine);
+                    double denominator = Math.Sin(x) - 3 + x;
+                    double value;
+
+                    if (Math.Abs(denominator) < 1e-10)
+                    {
+                        value = 0;
+                    }
+                    else
+                    {
+                        value = (3 * x - 1.5) / denominator + 2;
+                        value = Math.Round(value, 2);
+                    }
+
+                    writer.WriteLine($"| {x,5} | {value,8:F2} |");
                 }
-                else
-                {
-                    File.AppendAllText(path, strY);
-                }
+
+                writer.WriteLine("=================================================");
             }
 
             return path;

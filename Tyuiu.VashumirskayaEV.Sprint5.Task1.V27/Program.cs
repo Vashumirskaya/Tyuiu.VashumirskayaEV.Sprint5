@@ -6,13 +6,13 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task1.V27
     {
         static void Main(string[] args)
         {
-            Console.Title = "Спринт #5 | Выполнил: [ВашаФамилия] [ВашеИмя] | Вариант #27";
+            Console.Title = "Спринт #5 | Выполнила: Вашумирская Е. В. | СМАРТб-25-1";
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* Спринт #5                                                               *");
             Console.WriteLine("* Тема: Запись данных в текстовый файл                                    *");
             Console.WriteLine("* Задание #1                                                              *");
             Console.WriteLine("* Вариант #27                                                             *");
-            Console.WriteLine("* Выполнил: [ВашаФамилия] [ВашеИмя] | [ВашаГруппа]                        *");
+            Console.WriteLine("* Выполнил: Вашумирская Е. В. | СМАРТб-25-1                               *");
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* УСЛОВИЕ:                                                                *");
             Console.WriteLine("* Дана функция F(x) = (3x - 1.5)/(sin(x) - 3 + x) + 2                     *");

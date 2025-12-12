@@ -10,12 +10,12 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task7.V11
 
             string path = @"C:\DataSprint5\InPutDataFileTask7V11.txt";
 
-            Console.Title = "Спринт #5 | Выполнила: Вашумирская Е. В. | СМАРТ-25-1";
+            Console.Title = "Спринт #5 | Выполнила: Вашумирская Е. В. | СМАРТб-25-1";
             Console.WriteLine("**************************************************************************");
             Console.WriteLine("* Спринт #5                                                              *");
             Console.WriteLine("* Тема: Работа с файлами                                                 *");
             Console.WriteLine("* Задание #11                                                            *");
-            Console.WriteLine("* Выполнила: Вашумирская Елизавета Владимировна | СМАРТ-25-1             *");
+            Console.WriteLine("* Выполнила: Вашумирская Елизавета Владимировна | СМАРТб-25-1             *");
             Console.WriteLine("**************************************************************************");
             Console.WriteLine("* УСЛОВИЕ:                                                               *");
             Console.WriteLine("* Из файла удалить все пробелы и строчные русские буквы.                 *");

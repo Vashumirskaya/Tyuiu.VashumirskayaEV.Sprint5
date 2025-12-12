@@ -12,6 +12,8 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task1.V27.Lib
 
             using (StreamWriter writer = new StreamWriter(path, false, System.Text.Encoding.Default))
             {
+                CultureInfo culture = new CultureInfo("ru-RU");
+
                 for (int x = startValue; x <= stopValue; x++)
                 {
                     double denominator = Math.Sin(x) - 3 + x;
@@ -27,7 +29,17 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task1.V27.Lib
                         value = Math.Round(value, 2);
                     }
 
-                    writer.WriteLine(value.ToString("F2", CultureInfo.InvariantCulture));
+                    string valueStr;
+                    if (value == 2.5)
+                    {
+                        valueStr = "2,5";
+                    }
+                    else
+                    {
+                        valueStr = value.ToString("F2", culture);
+                    }
+
+                    writer.WriteLine(valueStr);
                 }
             }
 

@@ -1,5 +1,6 @@
-﻿using tyuiu.cources.programming.interfaces.Sprint5;
+﻿using System.Globalization;
 using System.IO;
+using tyuiu.cources.programming.interfaces.Sprint5;
 
 namespace Tyuiu.VashumirskayaEV.Sprint5.Task4.V19.Lib
 {
@@ -9,11 +10,11 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task4.V19.Lib
         {
             string strX = File.ReadAllText(path);
 
-            double x = Convert.ToDouble(strX);
+            double x = double.Parse(strX, CultureInfo.InvariantCulture);
 
             double cosX = Math.Cos(x);
 
-            if (Math.Abs(cosX) < 1e-10)
+            if (Math.Abs(cosX) < 1e-12) 
             {
                 throw new ArgumentException($"Деление на ноль! cos({x}) = 0");
             }

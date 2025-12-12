@@ -11,10 +11,18 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task4.V19.Test
         {
             DataService ds = new DataService();
 
-            string nonExistentPath = @"C:\NonExistentFolder\nonexistent.txt";
+            string tempPath = Path.GetTempFileName();
+            File.WriteAllText(tempPath, (Math.PI / 2).ToString(System.Globalization.CultureInfo.InvariantCulture));
 
-            Assert.ThrowsException<FileNotFoundException>(() =>
-                ds.LoadFromDataFile(nonExistentPath));
+            try
+            {
+                Assert.ThrowsException<ArgumentException>(() =>
+                    ds.LoadFromDataFile(tempPath));
+            }
+            finally
+            {
+                File.Delete(tempPath);
+            }
         }
     }
 }

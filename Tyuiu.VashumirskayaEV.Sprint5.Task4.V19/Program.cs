@@ -17,24 +17,28 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task4.V19
             Console.WriteLine("* УСЛОВИЕ:                                                                *");
             Console.WriteLine("* Дан файл с вещественным значением.                                      *");
             Console.WriteLine("* Прочитать значение из файла и подставить вместо X в формуле.            *");
-            Console.WriteLine("* Формула: y = (x / cos(x))^2                                            *");
-            Console.WriteLine("* Вычислить значение и вернуть полученный результат на консоль.          *");
-            Console.WriteLine("* Округлить до трёх знаков после запятой.                                *");
+            Console.WriteLine("* Формула: y = (x / cos(x))^2                                             *");
+            Console.WriteLine("* Вычислить значение и вернуть полученный результат на консоль.           *");
+            Console.WriteLine("* Округлить до трёх знаков после запятой.                                 *");
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* ИСХОДНЫЕ ДАННЫЕ:                                                        *");
             Console.WriteLine("***************************************************************************");
 
             string path = @"C:\DataSprint5\InPutDataFileTask4V19.txt";
 
-            Console.WriteLine($"* Файл с данными: {path}                        *");
+            Console.WriteLine($"* Файл с данными: {path}                                                 *");
+
+            string directory = @"C:\DataSprint5";
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+                Console.WriteLine($"* Создана папка: {directory}                                         *");
+            }
 
             if (!File.Exists(path))
             {
-                Console.WriteLine("* Файл не найден! Создайте папку C:\\DataSprint5\\ и скопируйте туда файл. *");
-                Console.WriteLine("***************************************************************************");
-                Console.WriteLine("Нажмите любую клавишу для выхода...");
-                Console.ReadKey();
-                return;
+                File.WriteAllText(path, "2.67");
+                Console.WriteLine($"* Создан файл с тестовыми данными: {path}                            *");
             }
 
             Console.WriteLine("***************************************************************************");
@@ -47,19 +51,38 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task4.V19
                 double result = ds.LoadFromDataFile(path);
 
                 string xValue = File.ReadAllText(path).Trim();
-                Console.WriteLine($"* Значение X из файла: {xValue}                                       *");
-                Console.WriteLine($"* Формула: y = (x / cos(x))^2                                         *");
+                Console.WriteLine($"* Значение X из файла: {xValue}                                      *");
+                Console.WriteLine($"* Формула: y = (x / cos(x))^2                                        *");
                 Console.WriteLine($"* Результат (округлено до 3 знаков): {result:F3}                     *");
-
-                double x = Convert.ToDouble(xValue);
-                double cosX = Math.Cos(x);
-                Console.WriteLine($"* cos({x:F3}) = {cosX:F3}                                            *");
-                Console.WriteLine($"* {x:F3} / {cosX:F3} = {x / cosX:F3}                                 *");
-                Console.WriteLine($"* ({x / cosX:F3})^2 = {Math.Pow(x / cosX, 2):F3}                     *");
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("* Ошибка: Файл не найден!                                             *");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("* Ошибка: Неверный формат данных в файле!                             *");
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine($"* Ошибка: {ex.Message}                                               *");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"* Ошибка: {ex.Message}                                               *");
+                Console.WriteLine($"* Неизвестная ошибка: {ex.Message}                                   *");
+            }
+
+            Console.WriteLine("***************************************************************************");
+
+            Console.WriteLine("* Содержимое файла:                                                       *");
+            try
+            {
+                string fileContent = File.ReadAllText(path);
+                Console.WriteLine($"* {fileContent}                                                      *");
+            }
+            catch
+            {
+                Console.WriteLine("* Не удалось прочитать файл                                           *");
             }
 
             Console.WriteLine("***************************************************************************");

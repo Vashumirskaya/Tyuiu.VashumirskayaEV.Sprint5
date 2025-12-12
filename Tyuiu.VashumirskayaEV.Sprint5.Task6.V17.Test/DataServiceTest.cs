@@ -17,6 +17,7 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task6.V17.Test
             try
             {
                 int result = ds.LoadFromDataFile(tempPath);
+
                 int expected = 2;
                 Assert.AreEqual(expected, result);
             }

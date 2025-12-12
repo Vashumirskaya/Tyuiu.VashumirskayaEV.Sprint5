@@ -12,12 +12,13 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task6.V17.Test
             DataService ds = new DataService();
 
             string tempPath = Path.GetTempFileName();
-            File.WriteAllText(tempPath, "Тест     строка    с   пробелами");
+            File.WriteAllText(tempPath, "Это  пример  строки с лишними пробелами.");
 
             try
             {
                 int result = ds.LoadFromDataFile(tempPath);
-                Assert.AreEqual(12, result);
+                int expected = 2;
+                Assert.AreEqual(expected, result);
             }
             finally
             {

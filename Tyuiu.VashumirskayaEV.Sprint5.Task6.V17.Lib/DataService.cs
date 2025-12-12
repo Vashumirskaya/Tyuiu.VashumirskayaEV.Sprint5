@@ -10,17 +10,38 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task6.V17.Lib
         {
             string fileContent = File.ReadAllText(path);
 
-            Regex regex = new Regex(@"\s{2,}");
+            int sequenceCount = 0;
+            bool inSpaceSequence = false;
+            int spaceSequenceLength = 0;
 
-            MatchCollection matches = regex.Matches(fileContent);
-
-            int totalSpaces = 0;
-            foreach (Match match in matches)
+            foreach (char c in fileContent)
             {
-                totalSpaces += match.Length;
+                if (c == ' ')
+                {
+                    spaceSequenceLength++;
+                    inSpaceSequence = true;
+                }
+                else
+                {
+                    if (inSpaceSequence)
+                    {
+                        if (spaceSequenceLength >= 2)
+                        {
+                            sequenceCount++;
+                        }
+
+                        spaceSequenceLength = 0;
+                        inSpaceSequence = false;
+                    }
+                }
             }
 
-            return totalSpaces;
+            if (inSpaceSequence && spaceSequenceLength >= 2)
+            {
+                sequenceCount++;
+            }
+
+            return sequenceCount;
         }
     }
 }

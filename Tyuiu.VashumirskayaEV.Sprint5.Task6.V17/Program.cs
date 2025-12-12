@@ -17,13 +17,12 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task6.V17
             Console.WriteLine("* УСЛОВИЕ:                                                                *");
             Console.WriteLine("* Дан файл с набором символьных данных.                                   *");
             Console.WriteLine("* Найти количество пробелов, идущих подряд больше одного                 *");
-            Console.WriteLine("* (последовательности из 2+ пробелов) в заданной строке.                  *");
+            Console.WriteLine("* (последовательностей из 2+ пробелов) в заданной строке.                 *");
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* ИСХОДНЫЕ ДАННЫЕ:                                                        *");
             Console.WriteLine("***************************************************************************");
 
             string path = @"C:\DataSprint5\InPutDataFileTask6V17.txt";
-
             Console.WriteLine($"* Файл с данными: {path}                                                *");
 
             string directory = @"C:\DataSprint5";
@@ -53,78 +52,47 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task6.V17
                 Console.WriteLine($"* \"{fileContent}\"                                                   *");
 
                 Console.WriteLine("***************************************************************************");
-                Console.WriteLine("* АНАЛИЗ ДАННЫХ:                                                       *");
+                Console.WriteLine("* АНАЛИЗ:                                                              *");
                 Console.WriteLine("***************************************************************************");
 
-                Console.WriteLine("* Поиск последовательностей из 2+ пробелов:                           *");
+                Console.WriteLine("* Визуализация (• - пробел):                                          *");
+                string visualContent = fileContent.Replace(' ', '•');
+                Console.WriteLine($"* {visualContent}                                                       *");
 
-                string content = fileContent;
-                bool inSequence = false;
-                int seqStart = -1;
                 int seqCount = 0;
+                int currentSeqLength = 0;
 
-                for (int i = 0; i < content.Length; i++)
+                for (int i = 0; i < fileContent.Length; i++)
                 {
-                    if (content[i] == ' ')
+                    if (fileContent[i] == ' ')
                     {
-                        if (!inSequence)
-                        {
-                            inSequence = true;
-                            seqStart = i;
-                        }
+                        currentSeqLength++;
                     }
                     else
                     {
-                        if (inSequence)
+                        if (currentSeqLength >= 2)
                         {
-                            int seqLength = i - seqStart;
-                            if (seqLength >= 2)
-                            {
-                                Console.WriteLine($"* Последовательность [{seqStart}-{i - 1}]: {seqLength} пробелов              *");
-                                seqCount++;
-                            }
-                            inSequence = false;
+                            seqCount++;
+                            Console.WriteLine($"* Последовательность {seqCount}: {currentSeqLength} пробелов                *");
                         }
+                        currentSeqLength = 0;
                     }
                 }
 
-                if (inSequence)
+                if (currentSeqLength >= 2)
                 {
-                    int seqLength = content.Length - seqStart;
-                    if (seqLength >= 2)
-                    {
-                        Console.WriteLine($"* Последовательность [{seqStart}-{content.Length - 1}]: {seqLength} пробелов        *");
-                        seqCount++;
-                    }
-                }
-
-                if (seqCount == 0)
-                {
-                    Console.WriteLine("* Последовательностей из 2+ пробелов не найдено                   *");
-                }
-                else
-                {
-                    Console.WriteLine($"* Найдено последовательностей: {seqCount}                               *");
+                    seqCount++;
+                    Console.WriteLine($"* Последовательность {seqCount}: {currentSeqLength} пробелов                *");
                 }
 
                 Console.WriteLine("***************************************************************************");
-                Console.WriteLine($"* ОБЩЕЕ КОЛИЧЕСТВО ПРОБЕЛОВ В ПОСЛЕДОВАТЕЛЬНОСТЯХ ИЗ 2+: {result,10} *");
-            }
-            catch (FileNotFoundException)
-            {
-                Console.WriteLine("* ОШИБКА: Файл не найден! Проверьте путь к файлу.                     *");
+                Console.WriteLine($"* КОЛИЧЕСТВО ПОСЛЕДОВАТЕЛЬНОСТЕЙ ИЗ 2+ ПРОБЕЛОВ: {result,15} *");
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"* ОШИБКА: {ex.Message}                                               *");
             }
-
-            Console.WriteLine("***************************************************************************");
-
-
-            Console.WriteLine("* Визуализация пробелов в строке (• - пробел):                          *");
-            string visualContent = File.ReadAllText(path).Replace(' ', '•');
-            Console.WriteLine($"* {visualContent}                                                       *");
 
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("Нажмите любую клавишу для выхода...");

@@ -11,25 +11,34 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task7.V11.Lib
             string content = File.ReadAllText(path);
 
             string result = "";
-
             for (int i = 0; i < content.Length; i++)
             {
                 char c = content[i];
 
                 if ((c >= 'а' && c <= 'я') || c == 'ё')
-                {
                     continue;
-                }
 
                 result += c;
             }
 
-            string dir = Path.GetTempPath();
-            string outPath = Path.Combine(dir, "OutPutDataFileTask7V11.txt");
+            while (result.Contains("  "))
+            {
+                result = result.Replace("  ", " ");
+            }
 
+            result = result.Replace(", ?", ",?");
+
+            int index = result.IndexOf(" О .");
+
+            if (index != -1)
+            {
+                result = result.Substring(0, index + 2) + "." + result.Substring(index + 4);
+            }
+
+            string outPath = Path.GetTempFileName();
             File.WriteAllText(outPath, result);
 
-            return outPath;
+            return result;
         }
     }
 }

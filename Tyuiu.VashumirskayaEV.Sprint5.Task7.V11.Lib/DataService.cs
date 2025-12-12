@@ -10,29 +10,27 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task7.V11.Lib
         {
             string content = File.ReadAllText(path);
 
-            string textWithoutSpaces = "";
+            string noSpaces = "";
             foreach (char c in content)
             {
-                if (c != ' ')
+                if (c != ' ' && c != '\t')
                 {
-                    textWithoutSpaces += c;
+                    noSpaces += c;
                 }
             }
 
             string result = "";
-            foreach (char c in textWithoutSpaces)
+            foreach (char c in noSpaces)
             {
-                bool isLowerRussian =
-                    (c >= 'а' && c <= 'я') || c == 'ё';
-
-                if (!isLowerRussian)
+                bool isLowerRu = (c >= 'а' && c <= 'я') || c == 'ё';
+                if (!isLowerRu)
                 {
                     result += c;
                 }
             }
 
-            string directory = Path.GetDirectoryName(path);
-            string outPath = Path.Combine(directory, "OutPutDataFileTask7V11.txt");
+            string dir = Path.GetTempPath();
+            string outPath = Path.Combine(dir, "OutPutDataFileTask7V11.txt");
 
             File.WriteAllText(outPath, result);
 

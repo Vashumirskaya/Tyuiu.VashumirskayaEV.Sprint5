@@ -10,23 +10,18 @@ namespace Tyuiu.VashumirskayaEV.Sprint5.Task7.V11.Lib
         {
             string content = File.ReadAllText(path);
 
-            string noSpaces = "";
-            foreach (char c in content)
-            {
-                if (c != ' ' && c != '\t')
-                {
-                    noSpaces += c;
-                }
-            }
-
             string result = "";
-            foreach (char c in noSpaces)
+
+            for (int i = 0; i < content.Length; i++)
             {
-                bool isLowerRu = (c >= 'а' && c <= 'я') || c == 'ё';
-                if (!isLowerRu)
+                char c = content[i];
+
+                if ((c >= 'а' && c <= 'я') || c == 'ё')
                 {
-                    result += c;
+                    continue;
                 }
+
+                result += c;
             }
 
             string dir = Path.GetTempPath();
